@@ -1,0 +1,8 @@
+{
+  "name": "treehouse-cli",
+  "version": "0.0.0",
+  "description": "The CLI companion that lets you upload your repo to your Treehouse server.",
+  "repository": "git@github.com:jessepinho/treehouse-cli.git",
+  "author": "Jesse Pinho <jesse@jessepinho.com>",
+  "license": "MIT"
+}
