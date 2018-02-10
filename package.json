@@ -4,5 +4,26 @@
   "description": "The CLI companion that lets you upload your repo to your Treehouse server.",
   "repository": "git@github.com:jessepinho/treehouse-cli.git",
   "author": "Jesse Pinho <jesse@jessepinho.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^22.1.2",
+    "jest": "^22.2.2",
+    "ts-jest": "^22.0.3",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
 }
