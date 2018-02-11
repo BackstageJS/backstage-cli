@@ -11,7 +11,8 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "prepublish": "tsc",
+    "postbuild": "chmod +x ./dist/index.js",
+    "prepublish": "build",
     "test": "jest",
     "test:watch": "jest --watch"
   },
