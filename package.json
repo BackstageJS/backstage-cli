@@ -5,6 +5,16 @@
   "repository": "git@github.com:jessepinho/treehouse-cli.git",
   "author": "Jesse Pinho <jesse@jessepinho.com>",
   "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "prepublish": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
   "devDependencies": {
     "@types/jest": "^22.1.2",
     "@types/node": "^9.4.5",
