@@ -12,7 +12,7 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "postbuild": "chmod +x ./dist/index.js",
-    "prepublish": "build",
+    "prepublish": "yarn run build",
     "test": "jest",
     "test:watch": "jest --watch"
   },
