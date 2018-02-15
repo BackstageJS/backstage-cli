@@ -5,6 +5,9 @@
   "repository": "git@github.com:jessepinho/backstage-cli.git",
   "author": "Jesse Pinho <jesse@jessepinho.com>",
   "license": "MIT",
+  "bin": {
+    "backstage": "./dist/index.js"
+  },
   "files": [
     "dist"
   ],
