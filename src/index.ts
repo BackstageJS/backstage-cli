@@ -21,7 +21,7 @@ program
   .command('deploy <key>')
   .option('-d, --directory <dir>', 'Specify the directory to deploy (default: `./build`)', './build')
   .action((key, command) => {
-    const file = `/tmp/treehouse-deploy-${new Date().getTime()}.tar.gz`
+    const file = `/tmp/backstage-deploy-${new Date().getTime()}.tar.gz`
     const packageStream = tar.create({ cwd: command.directory, file, gzip: true }, ['.'])
       .then(() => uploadStream(file, key))
   })
