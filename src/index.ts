@@ -3,7 +3,6 @@ import * as program from 'commander'
 import * as fs from 'fs'
 import * as rc from 'rc'
 import * as request from 'request'
-import { Readable } from 'stream'
 import * as tar from 'tar'
 const packageJSON = require('../package.json') // tslint:disable-line:no-var-requires
 
