@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "commander": "^2.14.1",
+    "rc": "^1.2.5",
     "request": "^2.83.0",
     "tar": "^4.3.3"
   }
