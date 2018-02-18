@@ -2,17 +2,16 @@
 import { execSync } from 'child_process'
 import * as program from 'commander'
 import * as fs from 'fs'
-import * as rc from 'rc'
 import * as request from 'request'
 import * as tar from 'tar'
+
+import { getConfig } from './helpers'
 const packageJSON = require('../package.json') // tslint:disable-line:no-var-requires
 
-const config = rc('backstage', {
-  tempDirectory: '/tmp',
-})
+const config = getConfig()
 
-const uploadStream = (file: string, key: string): request.Request => {
-  const uploadRequest = request.post(`${config.server}/${config.app}/${key}`)
+const uploadStream = (file: string, key: string, callback?: request.RequestCallback): request.Request => {
+  const uploadRequest = request.post(`${config.server}/${config.app}/${key}`, callback)
 
   uploadRequest.form().append(
     'package',
@@ -21,6 +20,11 @@ const uploadStream = (file: string, key: string): request.Request => {
   )
 
   return uploadRequest
+}
+
+const uploadCallback = (error: any, response: request.Response, body: any) => {
+  const { message } = JSON.parse(body)
+  console.log(message) // tslint:disable-line:no-console
 }
 
 program
@@ -34,7 +38,7 @@ program
     const file = `${config.tempDirectory}/backstage-package-${new Date().toISOString()}.tar.gz`
     const key = command.key.replace(/\W/g, '-')
     const packageStream = tar.create({ cwd: config.buildDirectory, file, gzip: true }, ['.'])
-      .then(() => uploadStream(file, key))
+      .then(() => uploadStream(file, key, uploadCallback))
   })
 
 program
