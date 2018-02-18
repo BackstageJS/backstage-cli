@@ -25,10 +25,9 @@ const uploadStream = (file: string, key: string): request.Request => {
 
 program
   .command('deploy <key>')
-  .option('-d, --directory <dir>', 'Specify the directory to deploy (default: `./build`)', './build')
   .action((key, command) => {
     const file = `${config.tempDirectory}/backstage-package-${new Date().getTime()}.tar.gz`
-    const packageStream = tar.create({ cwd: command.directory, file, gzip: true }, ['.'])
+    const packageStream = tar.create({ cwd: config.buildDirectory, file, gzip: true }, ['.'])
       .then(() => uploadStream(file, key))
   })
 
