@@ -39,6 +39,10 @@ program
     const key = command.key.replace(/\W/g, '-')
     const packageStream = tar.create({ cwd: config.buildDirectory, file, gzip: true }, ['.'])
       .then(() => uploadStream(file, key, uploadCallback))
+      .catch(error => {
+        console.error('There was an error when packaging your build directory:') // tslint:disable-line:no-console
+        console.error(error) // tslint:disable-line:no-console
+      })
   })
 
 program
