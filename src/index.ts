@@ -12,7 +12,7 @@ const config = rc('backstage', {
 })
 
 const uploadStream = (file: string, key: string): request.Request => {
-  const uploadRequest = request.post(`${config.server.baseURL}/${config.app}/${key}`)
+  const uploadRequest = request.post(`${config.server}/${config.app}/${key}`)
 
   uploadRequest.form().append(
     'package',
