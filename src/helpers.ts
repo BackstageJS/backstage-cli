@@ -28,10 +28,13 @@ export const getConfig = (() => {
 })()
 
 export const handleError = (message: string) => (error: any) => {
-  console.error(message) // tslint:disable-line:no-console
+  // tslint:disable:no-console
+  console.error(message)
   if (error) {
-    console.error(error) // tslint:disable-line:no-console
+    console.error('\n')
+    console.error(error)
   }
+  // tslint:enable:no-console
 
   process.exit(1)
 }
