@@ -5,12 +5,12 @@ import * as fs from 'fs'
 import * as request from 'request'
 import * as tar from 'tar'
 
-import { getConfig } from './helpers'
+import { getConfig, handleError } from './helpers'
 const packageJSON = require('../package.json') // tslint:disable-line:no-var-requires
 
 const config = getConfig()
 
-const uploadStream = (file: string, key: string, callback?: request.RequestCallback): request.Request => {
+const uploadStream = (file: string, key: string, callback?: request.RequestCallback) => {
   const uploadRequest = request.post(`${config.server}/${config.app}/${key}`, callback)
 
   uploadRequest.form().append(
@@ -18,11 +18,13 @@ const uploadStream = (file: string, key: string, callback?: request.RequestCallb
     fs.createReadStream(file),
     { filename: 'package.tar.gz' },
   )
-
-  return uploadRequest
 }
 
 const uploadCallback = (error: any, response: request.Response, body: any) => {
+  if (error) {
+    handleError('There was an error uploading your package')(error)
+  }
+
   const { message } = JSON.parse(body)
   console.log(message) // tslint:disable-line:no-console
 }
@@ -39,10 +41,7 @@ program
     const key = command.key.replace(/\W/g, '-')
     const packageStream = tar.create({ cwd: config.buildDirectory, file, gzip: true }, ['.'])
       .then(() => uploadStream(file, key, uploadCallback))
-      .catch(error => {
-        console.error('There was an error when packaging your build directory:') // tslint:disable-line:no-console
-        console.error(error) // tslint:disable-line:no-console
-      })
+      .catch(handleError('There was an error when packaging your build directory:'))
   })
 
 program

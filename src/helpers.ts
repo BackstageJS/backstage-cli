@@ -26,3 +26,12 @@ export const getConfig = (() => {
     return cachedConfig
   }
 })()
+
+export const handleError = (message: string) => (error: any) => {
+  console.error(message) // tslint:disable-line:no-console
+  if (error) {
+    console.error(error) // tslint:disable-line:no-console
+  }
+
+  process.exit(1)
+}
