@@ -22,11 +22,15 @@ const uploadStream = (file: string, key: string, callback?: request.RequestCallb
 
 const uploadCallback = (error: any, response: request.Response, body: any) => {
   if (error) {
-    handleError('There was an error uploading your package')(error)
+    handleError('There was an error uploading your package:')(error)
   }
 
-  const { message } = JSON.parse(body)
-  console.log(message) // tslint:disable-line:no-console
+  try {
+    const { message } = JSON.parse(body)
+    console.log(message) // tslint:disable-line:no-console
+  } catch (error) {
+    handleError('There was an error parsing the response from the server:')(error)
+  }
 }
 
 program
