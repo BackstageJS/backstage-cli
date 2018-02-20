@@ -6,6 +6,7 @@ import * as request from 'request'
 import * as tar from 'tar'
 
 import * as packageJSON from '../package.json'
+import init from './commands/init'
 import { getConfig, handleError } from './helpers'
 
 const config = getConfig()
@@ -47,6 +48,8 @@ program
       .then(() => uploadStream(file, key, uploadCallback))
       .catch(handleError('There was an error when packaging your build directory:'))
   })
+
+init(program)
 
 program
   .version(packageJSON.version)
