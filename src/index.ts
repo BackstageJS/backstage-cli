@@ -12,7 +12,7 @@ import { getConfig, handleError } from './helpers'
 const config = getConfig()
 
 const uploadStream = (file: string, key: string, callback?: request.RequestCallback) => {
-  const uploadRequest = request.post(`${config.server}/${config.app}/${key}`, callback)
+  const uploadRequest = request.post(`${config.server}/__backstage/deploy/${config.app}/${key}`, callback)
 
   uploadRequest.form().append(
     'package',
