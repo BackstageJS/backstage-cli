@@ -5,8 +5,8 @@ import * as fs from 'fs'
 import * as request from 'request'
 import * as tar from 'tar'
 
+import * as packageJSON from '../package.json'
 import { getConfig, handleError } from './helpers'
-const packageJSON = require('../package.json') // tslint:disable-line:no-var-requires
 
 const config = getConfig()
 
