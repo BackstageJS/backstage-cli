@@ -8,8 +8,16 @@ import * as tar from 'tar'
 import * as packageJSON from '../package.json'
 import init from './commands/init'
 import { getConfig, handleError } from './helpers'
+import { Config } from './config-schema'
 
-const config = getConfig()
+let config: Config
+
+try {
+  config = getConfig()
+}
+catch (e) {
+  console.warn("Failed to load config, use `backstage init`")
+}
 
 const uploadStream = (file: string, key: string, callback?: request.RequestCallback) => {
   const uploadRequest = request.post(`${config.server}/__backstage/deploy/${config.app}/${key}`, callback)
@@ -34,12 +42,19 @@ const uploadCallback = (error: any, response: request.Response, body: any) => {
   }
 }
 
+let defaultBranchName: String = "master";
+try {
+  defaultBranchName = execSync('git rev-parse --abbrev-ref HEAD').toString().trim()
+} catch (e) {
+  // use 'master' as the default
+}
+
 program
   .command('deploy')
   .option(
     '-k, --key <key>',
     'Specify the key to deploy (by default, the current Git branch name)',
-    execSync('git rev-parse --abbrev-ref HEAD').toString().trim(),
+    defaultBranchName,
   )
   .action(command => {
     const file = `${config.tempDirectory}/backstage-package-${new Date().toISOString()}.tar.gz`
