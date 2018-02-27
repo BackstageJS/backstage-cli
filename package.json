@@ -14,6 +14,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
+    "lint": "tslint --project .",
     "postbuild": "chmod +x ./dist/index.js",
     "prepublishOnly": "yarn run build",
     "test": "jest",
