@@ -19,6 +19,10 @@ export const getConfig = (() => {
       cachedConfig = rc('backstage', {
         tempDirectory: '/tmp',
       })
+
+      if (!cachedConfig.configs) {
+        throw new Error('No `.backstagerc` exists. Run `backstage init` before `backstage deploy`.')
+      }
     }
 
     validateConfig(cachedConfig)
