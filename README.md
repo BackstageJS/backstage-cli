@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jessepinho/backstage-cli.svg?branch=master)](https://travis-ci.org/jessepinho/backstage-cli)
+[![Build Status](https://travis-ci.org/BackstageJS/backstage-cli.svg?branch=master)](https://travis-ci.org/BackstageJS/backstage-cli)
 
 # backstage-cli
 

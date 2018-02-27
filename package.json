@@ -2,7 +2,7 @@
   "name": "backstage-cli",
   "version": "1.0.0-alpha.2",
   "description": "The CLI companion that lets you upload builds to your Backstage Server.",
-  "repository": "git@github.com:jessepinho/backstage-cli.git",
+  "repository": "git@github.com:BackstageJS/backstage-cli.git",
   "author": "Jesse Pinho <jesse@jessepinho.com>",
   "license": "MIT",
   "bin": {
